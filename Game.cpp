@@ -39,23 +39,11 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     }
 
     //initialize texture manager
-    m_textureManager.load("assets/animate-alpha.png", "animate", m_pRenderer);
-
-    //initialize our texture
-    SDL_Surface* pTempSurface = IMG_Load("assets/animate-alpha.png");
-    m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, pTempSurface);
-    SDL_FreeSurface(pTempSurface);
-
-    //initialize rectangle
-    //SDL_QueryTexture(m_pTexture, NULL, NULL, &m_sourceRectangle.w, &m_sourceRectangle.h);
-    m_sourceRectangle.w = 128;
-    m_sourceRectangle.h = 82;
-    m_destinationRectangle.x = 0;
-    m_sourceRectangle.x = 0;
-    m_destinationRectangle.y = 0;
-    m_sourceRectangle.y = 0;
-    m_destinationRectangle.w = m_sourceRectangle.w;
-    m_destinationRectangle.h = m_sourceRectangle.h;
+    if(!TheTextureManager::Instance()->Instance()->load("assets/animate-alpha.png", "animate", m_pRenderer)){
+        return false;
+    }
+    //another way without singleton
+    //m_textureManager.load("assets/animate-alpha.png", "animate", m_pRenderer);
 
     std::cout<<"Init success\n";
     m_bRunning = true; //everything inited successfully, lets start the mainloop
@@ -64,11 +52,11 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 void Game::render(){
     SDL_RenderClear(m_pRenderer); //clear the render to the draw color
-    m_textureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
-    m_textureManager.drawFrame("animate", 100, 100, 128, 82, 1, m_currentFrame, m_pRenderer);
-    /*Render with animation and without animation*/
-    //SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, (double)0, 0, SDL_FLIP_HORIZONTAL);
-    //SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+    TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
+    TheTextureManager::Instance()->drawFrame("animate", 100, 100, 128, 82, 1, m_currentFrame, m_pRenderer);
+    //whitout singleton
+    //m_textureManager.draw("animate", 0, 0, 128, 82, m_pRenderer);
+    //m_textureManager.drawFrame("animate", 100, 100, 128, 82, 1, m_currentFrame, m_pRenderer);
     SDL_RenderPresent(m_pRenderer); //draw to the scrren
 }
 
@@ -94,5 +82,4 @@ void Game::clean(){
 
 void Game::update(){
     m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
-    //m_sourceRectangle.x = int(((SDL_GetTicks() / 100) % 6));
 }

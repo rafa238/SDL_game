@@ -1,7 +1,9 @@
-#include "SDL.h"
-#include "TextureManager.h"
 #ifndef __Game__
 #define __Game__
+
+#include "SDL.h"
+#include "TextureManager.h"
+
 class Game{
 public:
     Game(){}
@@ -24,11 +26,8 @@ private:
     bool m_bRunning;
 
     int m_currentFrame;
-    TextureManager m_textureManager;
-
-    SDL_Texture* m_pTexture; // the new sdl texture variable
-    SDL_Rect m_sourceRectangle; // the first rectangle
-    SDL_Rect m_destinationRectangle; //another rectangle
+    //whithout singleton
+    //TextureManager m_textureManager;
 };
 
 #endif // __GAME__
