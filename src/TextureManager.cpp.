@@ -1,0 +1,11 @@
+#include "TextureManager.cpp."
+
+TextureManager.cpp::TextureManager.cpp()
+{
+    //ctor
+}
+
+TextureManager.cpp::~TextureManager.cpp()
+{
+    //dtor
+}

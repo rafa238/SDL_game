@@ -1,0 +1,16 @@
+#ifndef TEXTUREMANAGER_CPP_
+#define TEXTUREMANAGER_CPP_
+
+
+class TextureManager.cpp
+{
+    public:
+        TextureManager.cpp();
+        virtual ~TextureManager.cpp();
+
+    protected:
+
+    private:
+};
+
+#endif // TEXTUREMANAGER_CPP_

@@ -1,0 +1,16 @@
+#ifndef TEXTUREMANAGER_
+#define TEXTUREMANAGER_
+
+
+class TextureManager
+{
+    public:
+        TextureManager();
+        virtual ~TextureManager();
+
+    protected:
+
+    private:
+};
+
+#endif // TEXTUREMANAGER_

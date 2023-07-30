@@ -13,7 +13,12 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
+				<Linker>
+					<Add library="/usr/lib64/libSDL2_image.so" />
+					<Add directory="/usr/lib64/libSDL2_image.so" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/SDL-game" prefix_auto="1" extension_auto="1" />
@@ -22,6 +27,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -37,6 +43,8 @@
 		</Linker>
 		<Unit filename="Game.cpp" />
 		<Unit filename="Game.h" />
+		<Unit filename="TextureManager.cpp" />
+		<Unit filename="TextureManager.h" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>
