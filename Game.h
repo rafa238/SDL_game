@@ -3,6 +3,8 @@
 
 #include "SDL.h"
 #include "TextureManager.h"
+#include "GameObject.h"
+#include "Player.h"
 
 class Game{
 public:
@@ -28,6 +30,8 @@ private:
     int m_currentFrame;
     //whithout singleton
     //TextureManager m_textureManager;
+    GameObject m_go;
+    Player m_player;
 };
 
 #endif // __GAME__
