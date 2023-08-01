@@ -5,6 +5,8 @@
 #include "TextureManager.h"
 #include "GameObject.h"
 #include "Player.h"
+#include "Enemy.h"
+#include <vector>
 
 class Game{
 public:
@@ -30,8 +32,10 @@ private:
     int m_currentFrame;
     //whithout singleton
     //TextureManager m_textureManager;
-    GameObject m_go;
-    Player m_player;
+    GameObject* m_go;
+    Player* m_player;
+    Enemy* m_enemy;
+    std::vector<GameObject*> m_gameObjects;
 };
 
 #endif // __GAME__
