@@ -47,6 +47,8 @@
 		<Unit filename="Game.h" />
 		<Unit filename="GameObject.cpp" />
 		<Unit filename="GameObject.h" />
+		<Unit filename="InputHandler.cpp" />
+		<Unit filename="InputHandler.h" />
 		<Unit filename="LoaderParams.h" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
@@ -54,6 +56,7 @@
 		<Unit filename="SDLGameObject.h" />
 		<Unit filename="TextureManager.cpp" />
 		<Unit filename="TextureManager.h" />
+		<Unit filename="Vector2D.h" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>
