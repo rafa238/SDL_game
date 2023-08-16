@@ -4,10 +4,13 @@
 #include "TextureManager.h"
 #include "Player.h"
 #include "InputHandler.h"
+#include "MenuState.h"
+#include "PlayState.h"
 
 Game* Game::s_pInstance = 0;
 
 bool Game::init(const char* title, int xpos, int ypos, int width, int height, bool fullscreen){
+
     //initiliaze fullscreen flag
     int flags = 0;
 
@@ -55,6 +58,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
     //initialize Input Handler
     TheInputHandler::Instance()->initialiseJoysticks();
 
+    //intialize fsm
+    m_pGameStateMachine = new GameStateMachine();
+    m_pGameStateMachine->changeState(new MenuState());
 
     std::cout<<"Init success\n";
     m_bRunning = true; //everything inited successfully, lets start the mainloop
@@ -63,9 +69,11 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 void Game::render(){
     SDL_RenderClear(m_pRenderer); //clear the render to the draw color
-    for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++){
+    /*for(std::vector<GameObject*>::size_type i = 0; i != m_gameObjects.size(); i++){
         m_gameObjects[i]->draw();
-    }
+    }*/
+
+    m_pGameStateMachine->render();
 
     //whithout inheritance
     //TheTextureManager::Instance()->draw("animate", 0, 0, 128, 82, m_pRenderer);
@@ -79,6 +87,10 @@ void Game::render(){
 
 void Game::handleEvents(){
     TheInputHandler::Instance()->update();
+
+    if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN)){
+        m_pGameStateMachine->changeState(new PlayState());
+    }
 }
 
 void Game::clean(){
@@ -89,9 +101,10 @@ void Game::clean(){
     SDL_Quit();
 }
 
-void Game::update(){;
-    for(std::vector<GameObject*>::size_type i=0; i != m_gameObjects.size(); i++){
+void Game::update(){
+    m_pGameStateMachine->update();
+    /*for(std::vector<GameObject*>::size_type i=0; i != m_gameObjects.size(); i++){
         m_gameObjects[i]->update();
-    }
+    }*/
 }
 

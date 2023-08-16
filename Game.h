@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include <vector>
+#include "GameStateMachine.h"
 
 class Game{
 public:
@@ -44,6 +45,9 @@ private:
 
     std::vector<GameObject*> m_gameObjects;
     static Game* s_pInstance;
+
+    //GameStateMachine
+    GameStateMachine* m_pGameStateMachine;
 };
 
 typedef Game TheGame;
